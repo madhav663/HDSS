@@ -1,0 +1,108 @@
+pq-blend-go/
+│
+├── go.mod
+├── main.go                  # Main benchmark/driver (calls Go and cgo PQC, runs CSV export)
+│
+├── hybrid/                  # Go-native hybrid (Kyber, Dilithium2, benchmarking, CSV utils)
+│   ├── pqblend.go
+│   ├── benchmark.go
+│   └── ... (other Go helper files)
+│
+├── wrappers/                # All cgo wrappers and C code for additional PQC
+│   ├── sphincsplus/         # All SPHINCS+ code (cgo wrapper and C sources)
+│   │   ├── sphincsplus.go   # Go cgo wrapper for SPHINCS+
+│   │   ├── api.h
+│   │   ├── params.h
+│   │   ├── sign.c
+│   │   └── ... (other SPHINCS+ C/H files from PQClean)
+│   ├── falcon/              # Falcon cgo and C code
+│   │   ├── falcon.go
+│   │   ├── api.h
+│   │   └── ... (Falcon C/H files)
+│   ├── ntru/                # NTRU cgo and C code
+│   │   ├── ntru.go
+│   │   └── ... (NTRU C/H files)
+│   └── ... (other wrappers)
+│
+├── classical/               # Go-native classical crypto (RSA/ECDSA/Ed25519 benchmarks)
+│   ├── classical.go
+│   └── ... (other classical helper files)
+│
+├── datasets/                # Real/simulated blockchain & IoT datasets (CSV, JSON, etc.)
+│   ├── blockchain_sample.csv
+│   ├── iot_sample.csv
+│   └── ...
+│
+├── results/                 # All result CSVs for plotting/analysis
+│   ├── pqbenchmarks.csv
+│   ├── classbenchmarks.csv
+│   ├── wrapperbenchmarks.csv
+│   └── ...
+│
+├── plot/                    # Python plotting/analysis scripts
+│   ├── plot_benchmarks.py
+│   ├── compare_all.py
+│   └── ...
+│
+└── README.md                # Project and experiment documentation, instructions, etc.
+
+
+
+main.go
+Orchestrates all benchmarks and exports
+
+Calls: Go-native PQC (from hybrid/), cgo PQC (from wrappers/), and classical crypto (from classical/)
+
+hybrid/
+All Go-native PQC code (Kyber, Dilithium2, etc.), with benchmarks and CSV helpers
+
+wrappers/
+Each subfolder is a self-contained Go cgo wrapper + C source/header files for a specific PQC scheme (Sphincs+, Falcon, NTRU)
+
+sphincsplus/sphincsplus.go is your Go cgo wrapper; the rest are C files from PQClean
+
+classical/
+RSA, ECDSA, Ed25519, etc.—pure Go (standard library)
+
+Similar benchmark functions as PQC
+
+datasets/
+Real or synthetic transaction/message data for simulating blockchain/IoT
+
+Used for more realistic sign/verify tests
+
+results/
+All benchmarking output in CSV format
+
+Used by plotting/analysis scripts
+
+plot/
+Python (or Jupyter Notebook) scripts for generating research-quality figures and tables
+
+README.md
+Overview, setup instructions, description of benchmarks, how to add new PQC schemes, etc.
+
+
+
+
+
+
+2. Abstract 
+
+3. Introduction 
+
+4. Methodology 
+
+5. Literature review tabulation (Sample given) 
+
+6. Existing Result and Expected Proposed Result tabulation (Sample given) 
+
+7. Plagiarism report including AI writing
+
+8. Methodology of the proposed system 
+
+9. Existing Result and Obtained Proposed Result tabulation (Sample given) 
+
+10. Implementation, Tables and Graphs 
+
+11. Conclusion and Future Work 
